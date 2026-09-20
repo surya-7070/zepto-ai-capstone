@@ -235,6 +235,27 @@ git log --graph --all --oneline
     └── Dockerfile
 ```
 
+## Before you submit — generated artifacts to produce
+
+The repository ships the code and the written material. Four sets of artifacts
+are produced by running it, and should be committed before submission:
+
+```bash
+cd data_pipeline && python scrape_books.py && python build_db.py && python run_queries.py && cd ..
+cd analytics      && python 01_eda.py && python 02_modeling.py && cd ..
+cd support_assistant && python ingest.py && python demo_calls.py && cd ..
+git add -A && git commit -m "Add generated artifacts: query log, EDA/modeling reports, figures, example calls"
+```
+
+| Produced by | Artifacts |
+|---|---|
+| `data_pipeline/run_queries.py` | `outputs/query_results.md` (and `books_clean.csv`) |
+| `analytics/01_eda.py` | `titanic.csv`, `titanic_clean.csv`, `figures/*.png`, `reports/01_eda_report.md` |
+| `analytics/02_modeling.py` | `best_pipeline.joblib`, `figures/*.png`, `reports/02_modeling_report.md` |
+| `support_assistant/demo_calls.py` | `example_calls.md` and the transcript block in `support_assistant/README.md` |
+
+Also verify the Docker baseline once: `docker build -t zepto-support support_assistant && docker run -p 7860:7860 zepto-support`.
+
 ## Academic integrity
 
 The code, analysis and written interpretations in this repository are my own.
