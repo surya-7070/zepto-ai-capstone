@@ -1,0 +1,29 @@
+# Consolidated requirements for all three modules.
+# (support_assistant/requirements.txt is a slim subset used only by the
+#  Docker image; use this file for local development.)
+
+# --- Module 1: data pipeline ------------------------------------------------
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.0
+
+# --- Module 2: analytics pipeline -------------------------------------------
+pandas>=2.1
+numpy>=1.26
+matplotlib>=3.8
+seaborn>=0.13
+scikit-learn>=1.4
+imbalanced-learn>=0.12
+joblib>=1.3
+
+# --- Module 3: support assistant --------------------------------------------
+fastapi>=0.115
+uvicorn[standard]>=0.34
+pydantic>=2.9
+langgraph>=0.2.50
+langchain-core>=0.3
+chromadb>=0.5.20
+sentence-transformers>=3.0
+httpx>=0.27                 # used by fastapi.testclient in demo_calls.py
+# Only needed for the optional MOCK_LLM=0 extension:
+groq>=0.13
