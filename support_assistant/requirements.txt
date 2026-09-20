@@ -1,0 +1,12 @@
+# Slim dependency set for the support-assistant container only.
+# (The repository root also ships one consolidated requirements.txt covering
+#  all three modules for local development.)
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+langgraph==0.2.60
+langchain-core==0.3.28
+chromadb==0.5.23
+sentence-transformers==3.3.1
+# Only needed for the optional MOCK_LLM=0 extension:
+groq==0.13.1
